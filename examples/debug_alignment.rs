@@ -1,3 +1,5 @@
+use eframe::egui;
+
 fn main() {
     eframe::run_native(
         "egui-phosphor demo",
@@ -7,16 +9,13 @@ fn main() {
     .unwrap();
 }
 
-struct Demo {}
+struct Demo;
 
 impl Demo {
     fn new(cc: &eframe::CreationContext) -> Self {
-        let mut fonts = egui::FontDefinitions::default();
-        egui_phosphor::add_to_fonts(&mut fonts, egui_phosphor::Variant::Regular);
+        egui_phosphor::add_all_enabled!(cc.egui_ctx);
 
-        cc.egui_ctx.set_fonts(fonts);
-
-        Self {}
+        Self
     }
 }
 
